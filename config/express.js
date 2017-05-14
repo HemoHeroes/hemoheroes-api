@@ -20,17 +20,14 @@ app.use(helmet.hsts({
 	"force": true
 }));
 
-
 app.disable("x-powered-by");
 
 app.use((req, res, next) => {
 	res.append('Access-Control-Allow-Origin', '*');
-	res.append('Access-Control-Allow-Methods', ['GET', 'OPTIONS', 'PUT', 'POST']);
+	res.append('Access-Control-Allow-Methods', ['GET', 'OPTIONS', 'PUT', 'POST', 'DELETE']);
 	res.append('Access-Control-Allow-Headers',
-		'Origin, X-Requested-With, Content-Type, Accept');
+		'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Access-Control-Request-Headers');
 	next();
 });
-
-app.use('/',express.static('./public'));
 
 module.exports = app;
