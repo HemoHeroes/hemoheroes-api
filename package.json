@@ -4,9 +4,9 @@
   "description": "Projeto para fomentar a doação de sangue.",
   "main": "index.js",
   "scripts": {
-    "test"  : "mocha test/test.js",
-    "dev"   : "nodemon index.js",
-    "start" : "npm run dev"
+    "test": "mocha test/test.js",
+    "dev": "nodemon index.js",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,8 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "helmet": "^3.5.0",
+    "loaded-module": "0.0.1",
+    "mongoose": "^4.9.9",
     "morgan": "^1.8.1",
     "upfiles": "^1.2.0"
   },
