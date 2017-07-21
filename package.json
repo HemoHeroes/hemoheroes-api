@@ -1,43 +1,24 @@
 {
-  "name": "hemoheroes-js",
-  "version": "0.0.1",
-  "description": "Projeto para fomentar a doação de sangue.",
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/test.js",
-    "dev": "nodemon index.js",
-    "start": "npm run dev"
+    "start": "node ./bin/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HemoHeroes/hemoheroes-js.git"
-  },
-  "keywords": [
-    "hemoheroes",
-    "doar",
-    "sangue",
-    "doe",
-    "sangue",
-    "hemocentro"
-  ],
-  "author": "HemoHeroes",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HemoHeroes/hemoheroes-js/issues"
-  },
-  "homepage": "https://github.com/HemoHeroes/hemoheroes-js#readme",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "helmet": "^3.5.0",
-    "loaded-module": "0.0.1",
-    "mongoose": "^4.9.9",
-    "morgan": "^1.8.1",
-    "upfiles": "^1.2.0"
+    "body-parser": "^1.17.2",
+    "debug": "^2.6.8",
+    "express": "^4.15.3",
+    "http": "0.0.0",
+    "jsonwebtoken": "^7.4.0",
+    "md5": "^2.2.1",
+    "mongoose": "^4.11.1"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
     "nodemon": "^1.11.0"
   }
 }
