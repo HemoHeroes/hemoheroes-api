@@ -11,7 +11,8 @@ var UserBank = mongoose.Schema({
         long: Number,
         street: String
     },
-    passwoard: String
+    passwoard: String,
+    active: Boolean
 },{versionKey: false});
 
 module.exports = mongoose.model('UserBank', UserBank, 'UserBank');
