@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 var UserDonator = mongoose.Schema({
 	name: String,
-	email: String,
+	email: {
+        type: String,
+        unique: true,
+        validate: /validate email/gi
+    },
 	bloodType: String,
     gender: String,
     password: String,
