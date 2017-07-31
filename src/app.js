@@ -11,10 +11,10 @@ const router = express.Router();
 mongoose.connect(config.connectionString);
 
 // Carrega os models
-
+const userDonator = require('./models/UserDonator');
 
 // Carrega as Rotas
-
+const userDonatorRoute = require('./routes/UserDonator-route');
 
 app.use(bodyParser.json({
     limit: '5mb'
@@ -28,5 +28,7 @@ app.use(function (req, res, next){
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
 });
+
+app.use('/userDonator', userDonator);
 
 module.exports = app;

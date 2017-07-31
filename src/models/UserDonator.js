@@ -4,8 +4,8 @@ var UserDonator = mongoose.Schema({
 	name: String,
 	email: {
         type: String,
-        unique: true,
-        validate: /validate email/gi
+        unique: true
+        // validate: /validate email/gi
     },
 	bloodType: String,
     gender: String,
