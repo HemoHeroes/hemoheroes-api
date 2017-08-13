@@ -11,7 +11,7 @@ const router = express.Router();
 mongoose.connect(config.connectionString);
 
 // Carrega os models
-const userDonator = require('./models/UserDonator');
+const UserDonator = require('./models/UserDonator');
 
 // Carrega as Rotas
 const userDonatorRoute = require('./routes/UserDonator-route');
@@ -29,6 +29,6 @@ app.use(function (req, res, next){
     next();
 });
 
-app.use('/userDonator', userDonator);
+app.use('/userDonator', userDonatorRoute);
 
 module.exports = app;
