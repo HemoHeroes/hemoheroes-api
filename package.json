@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "HemoHeroes-API",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
     "debug": "^2.6.8",
