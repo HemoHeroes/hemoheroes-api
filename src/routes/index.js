@@ -1,9 +1,21 @@
 const router = require('express').Router();
-let userController = require('./../controller/user-donator');
+let userDonator = require('./../controller/user-donator');
+let userBank = require('./../controller/user-bank');
 
-router.get('/user', userController.getUser);
-router.get('/user/:id', userController.getUser);
-router.post('/user', userController.createUser);
-router.put('/user/:id', userController.changeUser);
+/**
+ * User Donator
+ */
+router.get('/user/donator', userDonator.getUser);
+router.get('/user/donator/:id', userDonator.getUser);
+router.post('/user/donator', userDonator.createUser);
+router.put('/user/donator/:id', userDonator.changeUser);
+
+/**
+ * User Bank
+ */
+router.get('/user/bank', userBank.getUser);
+router.get('/user/bank/:id', userBank.getUser);
+router.post('/user/bank', userBank.createUser);
+router.put('/user/bank/:id', userBank.changeUser);
 
 module.exports = router;
