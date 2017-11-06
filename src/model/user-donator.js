@@ -16,4 +16,4 @@ var UserDonator = mongoose.Schema({
     dateLastDonator: Date
 },{versionKey: false});
 
-module.exports = mongoose.model('UserDonator', UserDonator, 'UserDonator');
+module.exports = mongoose.model('userDonator', UserDonator, 'userDonator');

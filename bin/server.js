@@ -1,56 +1,32 @@
-'use strict'
+"use strict";
 
-const app = require('../src/app');
-const debug = require('debug')('nodestr:server');
-const http = require('http');
+const bodyParser = require("body-parser");
+const express = require("express");
+const app = express();
+const routes = require("./../src/routes");
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://172.16.0.114:27017/hh-tst');
+mongoose.connection.once('connected', () => console.log("Connectou!"));
 
 
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+app.set('trust proxy', true);
+app.set('view cache', false);
 
-const server = http.createServer(app);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-function normalizePort(val) {
-    const port = parseInt(val, 10);
-
-    if(isNaN(port))
-        return val;
-    
-    if(port >= 0)
-        return port;
-
-    return false;
-}
-
-function onError(error) {
-    if(error.syscall != 'liste')
-        throw error;
-
-    const bind = typeof port === 'string' ?
-        'Pipe ' + port :
-        'Port ' + port;
-
-    switch(error.code) {
-        case 'EACCES':
-            console.error(bind + ' requires elevated privileges');
-            process.exit(1);
-            break;
-        case 'EADDRINUSE' :
-            console.error(bind + ' is already in use');
-            break;
-        default: 
-            throw error;   
+app.use(
+    (req, res, next) => {
+        res.setHeader("Cache-Control", "public, max-age=60");
+        res.append("Access-Control-Allow-Origin", "*");
+        res.append("Access-Control-Allow-Methods", ["GET", "POST", "PUT", "OPTIONS"]);
+        res.append("Access-Control-Allow-Headers", 
+                   "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method, Access-Control-Request-Headers");
+        next();
     }
-}
+);
 
-function onListening() {
-    const addr = server.address();
-    const bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
-}
+app.use('/', routes);
+
+module.exports = app;

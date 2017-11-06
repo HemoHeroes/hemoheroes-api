@@ -4,13 +4,13 @@ var UserBank = mongoose.Schema({
     name: String,
     email: {
         type: String,
-        unique: true,
-        validate: /validate email/gi
+        unique: true
+        // validate: /validate email/gi
     },
     cnpj: {
         type: String,
-        unique: true,
-        validate: /validate cnpj/gi
+        unique: true
+        // validate: /validate cnpj/gi
     },
     phones: Array,
     ramal: String,
