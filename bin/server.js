@@ -6,7 +6,7 @@ const app = express();
 const routes = require("./../src/routes");
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://172.16.0.114:27017/hh-tst');
+mongoose.connect('mongodb://localhost:27017/hh-tst');
 mongoose.connection.once('connected', () => console.log("Connectou!"));
 
 
@@ -27,6 +27,6 @@ app.use(
     }
 );
 
-app.use('/', routes);
+app.use('/api', routes);
 
 module.exports = app;
