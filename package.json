@@ -1,26 +1,23 @@
 {
-  "name": "HemoHeroes-API",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "hemoheroes-api",
+  "version": "2.0.0",
+  "description": "this project is to foster blood donation, it is fully open-source. help us to save lives.",
+  "main": "./bin/server.js",
   "scripts": {
-    "test": "mocha ./test",
-    "dev": "nodemon index.js dev",
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HemoHeroes/hemoheroes-api.git"
+  },
+  "keywords": [
+    "blood",
+    "donation"
+  ],
+  "author": "renanbastos93 <renanbastos.tec@gmail.com> (http://renanbastos.com.br)",
   "license": "MIT",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "debug": "^2.6.8",
-    "express": "^4.15.3",
-    "http": "0.0.0",
-    "jsonwebtoken": "^7.4.0",
-    "md5": "^2.2.1",
-    "mongoose": "^4.11.1"
+  "bugs": {
+    "url": "https://github.com/HemoHeroes/hemoheroes-api/issues"
   },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
-  }
+  "homepage": "https://github.com/HemoHeroes/hemoheroes-api#readme"
 }
