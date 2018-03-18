@@ -6,7 +6,9 @@ const bankMiddleWare = {};
 
 bankMiddleWare.getById = (request, response, next) => {};
 bankMiddleWare.create = (request, response, next) => {
-    let result = bankValidator.create(request.body);
+    let validator = new bankValidator();
+    let result = validator.create(request.body);
+    console.log(result)
     if(result.status){
         return response.status(result.status).json({
             message: result.message,

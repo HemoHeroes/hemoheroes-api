@@ -14,7 +14,10 @@ class BankValidator extends genericValidator{
                 message: "Please, inform all data!",
                 errors: this.errors
             }
-        }
+        };
+        return {
+            status: null
+        };
     }
 };
 

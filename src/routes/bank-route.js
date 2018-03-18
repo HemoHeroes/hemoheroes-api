@@ -4,25 +4,21 @@ const express = require("express");
 const router = express.Router();
 
 const controller = require("../controllers/bank-controller");
+const bankMiddlware = require("../middlewares/bank-middleware");
 
-router.get("/", (request, response) => {
-    try{
-        let result = controller.getAll();
-        return response.status(200).json(result);
-    }catch(error){
-        return response.status(500).json({
-            message: "Error internal"
-        });
-    }
 
-    // return response.status(200).send({
-    //     title: "BANK - API",
-    //     version: "2.0.0"    
-    // });
+router.get("/", async(request, response) => {
+    let banks =  await controller.getAll()
+    return response.status(200).json(banks);
 });
 
-router.post("/", (request, response) => {
-    
+router.post("/", bankMiddlware.create, (request, response) => {
+    try{
+        let result = controller.create(request.body);
+        return response.status(201).json(result);
+    }catch(error){
+        return response.status(500).send("fudeeu")
+    }
 });
 
 module.exports = router;

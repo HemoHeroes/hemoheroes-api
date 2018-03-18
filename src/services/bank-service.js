@@ -8,8 +8,12 @@ const bankRepository = require("../repositories/bank-repository");
 const bankService = {};
 
 bankService.getAll = async() => {
-    bankRepository.model = "userBank";
-    let result = await bankRepository.getAll();
+    let result =  await bankRepository.getAll();
+    return result;
+};
+
+bankService.create = async(bank) => {
+    let result = await bankRepository.create(bank);
     return result;
 };
 
