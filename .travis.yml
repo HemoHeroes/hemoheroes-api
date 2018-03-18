@@ -1,3 +1,8 @@
 language: node_js
 node_js:
   - "9"
+install:
+  - npm install -g codecov
+script:
+  - export CODECOV_TOKEN=03d94c75-9e63-44e2-8de2-6442eb69533f
+  - codecov
