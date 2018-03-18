@@ -4,7 +4,8 @@
   "description": "this project is to foster blood donation, it is fully open-source. help us to save lives.",
   "main": "./bin/server.js",
   "scripts": {
-    "test": "mocha ./tests/index.js",
+    "test": "nyc mocha",
+    "coverage": "istanbul cover _mocha -- ./test/* --recursive && codecov",
     "build-dev": "npm install && npm install --only=dev",
     "build-prd": "npm install",
     "dev": "nodemon ./bin/server.js"
@@ -32,6 +33,7 @@
     "mocha": "^5.0.4"
   },
   "devDependencies": {
+    "istanbul": "^0.4.5",
     "nodemon": "^1.17.2"
   }
 }
