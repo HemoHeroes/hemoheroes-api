@@ -38,3 +38,10 @@ jspm_packages
 
 # Others
 package-lock.json
+
+# Coverage
+coverage.*
+reports
+coverage
+coverage/
+coverage/*
