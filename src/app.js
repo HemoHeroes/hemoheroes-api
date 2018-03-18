@@ -8,6 +8,7 @@ const app = express();
 
 // Loading routes
 const indexRoute = require("./routes/index-route");
+const bankRoute = require("./routes/bank-route");
 
 // Use MiddleWares of Libs
 app.use(bodyParser.json());
@@ -21,6 +22,6 @@ app.use(genericMiddlware);
 
 // Loading routes
 app.use("/", indexRoute);
-app.use(`/api/${version}/bank`, indexRoute);
+app.use(`/api/${version}/bank`, bankRoute);
 
 module.exports = app;
