@@ -4,7 +4,10 @@
   "description": "this project is to foster blood donation, it is fully open-source. help us to save lives.",
   "main": "./bin/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-dev": "npm install && npm install --only=dev",
+    "build-prd": "npm install",
+    "dev": "nodemon ./bin/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,15 @@
   "bugs": {
     "url": "https://github.com/HemoHeroes/hemoheroes-api/issues"
   },
-  "homepage": "https://github.com/HemoHeroes/hemoheroes-api#readme"
+  "homepage": "https://github.com/HemoHeroes/hemoheroes-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "config": "^1.30.0",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
 }
