@@ -1,4 +1,5 @@
 "use strict";
+
 const saltKey = require("config").get("auth.saltKey");
 const jwt = require("jsonwebtoken");
 const auth = {};
@@ -19,7 +20,7 @@ auth.verifyToken = function (token) {
         } else {
             return true;
         }
-    })
+    });
 };
 
 module.exports = auth;
