@@ -2,12 +2,9 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-// const mongoose = require("mongoose");
+const version = require("config").get("server.version");
 
 const app = express();
-
-// Connection MongoDB
-// mongoose.connect(config.connectionString);
 
 // Loading routes
 const indexRoute = require("./routes/index-route");
@@ -24,5 +21,6 @@ app.use(genericMiddlware);
 
 // Loading routes
 app.use("/", indexRoute);
+app.use(`/api/${version}/bank`, indexRoute);
 
 module.exports = app;

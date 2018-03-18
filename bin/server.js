@@ -4,11 +4,14 @@ const app = require("../src/app");
 const http = require("http");
 const debug = require("debug")("nodestr:server");
 const express = require("express");
+const mongoose = require("mongoose");
 const config = require("config");
 
 const port = config.get("server.port");
 app.set("ip", config.get("server.ip"));
 app.set("port", port);
+
+mongoose.connect(config.get("mongodb.queryString"));
 
 const server = http.createServer(app);
 
