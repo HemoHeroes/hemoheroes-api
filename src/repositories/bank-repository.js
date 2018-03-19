@@ -21,7 +21,7 @@ const userBank = mongoose.model("userBank", schema, "userBank");
 const bankRepository = {};
 
 bankRepository.getAll = async() => {
-    let result =  await userBank.find({})
+    let result = await userBank.find({})
     .exec();
     return result;
 };
