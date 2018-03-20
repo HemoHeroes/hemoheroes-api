@@ -11,6 +11,9 @@
     "dev": "nodemon ./bin/server.js".
     "start": "node ./bin/server.js"
   },
+  "engines": {
+    "node": "9.8.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HemoHeroes/hemoheroes-api.git"
