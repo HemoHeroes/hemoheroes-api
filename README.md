@@ -1,8 +1,7 @@
-# HemoHeroes - API 
-This project has intention, help everyone. So, we have as objective promote blood donation. 
-We need of help you, if you want contribute with the project stay free. Us want yet help world, **Do you want to help the world?**.
+# HemoHeroes - API
+This project is intended to help everyone. We aim to promote blood donation. We need your help to contribute to the project so it stays free. **We want to help the world, you want to help the world?**
 
-###### [So, join us.](https://github.com/HemoHeroes/hemoheroes-api#fork-destination-box)
+##### [So, join us.](https://github.com/HemoHeroes/hemoheroes-api#fork-destination-box)
 
 [![Build Status](https://travis-ci.org/HemoHeroes/hemoheroes-api.svg?branch=master)](https://travis-ci.org/HemoHeroes/hemoheroes-api)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3b4f2525cc84c9000df1/maintainability)](https://codeclimate.com/github/HemoHeroes/hemoheroes-api/maintainability)
