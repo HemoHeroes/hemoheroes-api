@@ -6,9 +6,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const config = require("config");
 
-const port = config.get("server.port");
-app.set("ip", config.get("server.ip"));
-app.set("port", port);
+const port = process.env.PORT || 8080;
+// app.set("ip", config.get("server.ip"));
+app.set("port", process.env.PORT || 8080);
 
 mongoose.connect(config.get("mongodb.queryString"));
 

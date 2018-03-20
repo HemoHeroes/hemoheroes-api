@@ -8,7 +8,11 @@
     "coverage": "istanbul cover _mocha -- ./test/* --recursive && codecov",
     "build-dev": "npm install && npm install --only=dev",
     "build-prd": "npm install",
-    "dev": "nodemon ./bin/server.js"
+    "dev": "nodemon ./bin/server.js",
+    "start": "node ./bin/server.js"
+  },
+  "engines": {
+    "node": "9.8.0"
   },
   "repository": {
     "type": "git",
