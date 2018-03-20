@@ -1,0 +1,13 @@
+{
+    "server": {
+        "ip": "0.0.0.0",
+        "port": "8080",
+        "version": "v1"
+    },
+    "auth": {
+        "saltKey": "testing-auth"
+    },
+    "mongodb": {
+        "queryString": "mongodb://hemoheroes:hhtst123@ds117539.mlab.com:17539/hemoheroes"
+    }
+}
