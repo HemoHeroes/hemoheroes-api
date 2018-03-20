@@ -22,6 +22,6 @@ app.use(genericMiddlware);
 
 // Loading routes
 app.use("/", indexRoute);
-app.use(`/api/${version}/bank`, bankRoute);
+app.use(`/api/${version}/banks`, bankRoute);
 
 module.exports = app;
