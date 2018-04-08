@@ -21,4 +21,13 @@ router.post("/", bankMiddlware.create, (request, response) => {
     }
 });
 
+router.post("/login", (request, response) => {
+    try{
+        let result = controller.login(request.body);
+        return response.status(200).json(result);
+    }catch(error){
+        return response.status(500).send("fudeeu")
+    }
+});
+
 module.exports = router;
