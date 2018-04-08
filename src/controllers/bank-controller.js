@@ -8,6 +8,10 @@ controller.getAll = async() => {
     return result;
 };
 
+controller.login = async() => {
+
+};
+
 controller.create = async(bank) => {
     return await service.create(bank);
 };
