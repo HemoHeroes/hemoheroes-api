@@ -1,14 +1,16 @@
 "use strict";
 
-const bankDomain = require("../domains/userBank-domain");
-const phoneDomain = require("../domains/phones-domain");
-const addressDomain = require("../domains/address-domain");
 const bankRepository = require("../repositories/bank-repository");
 
 const bankService = {};
 
 bankService.getAll = async() => {
     let result =  await bankRepository.getAll();
+    return result;
+};
+
+bankService.login = async() => {
+    let result =  await bankRepository.login(email, password);
     return result;
 };
 
