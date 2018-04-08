@@ -26,6 +26,14 @@ bankRepository.getAll = async() => {
     return result;
 };
 
+bankRepository.login = async(email, password) => {
+    let result = await userBank.find({
+        email: email,
+        password: password
+    });
+    return (result.length > 0) ? result : null;
+};
+
 bankRepository.create = async(bank) => {
     let newBank = new userBank(bank);
     return await newBank.save();
