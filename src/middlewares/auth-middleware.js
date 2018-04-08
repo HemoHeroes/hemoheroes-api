@@ -4,53 +4,34 @@ const jwt = require("../polices/auth-police");
 
 const authMiddleWare = {};
 
-authMiddleWare.authorize = (request, response, next) => {
-
-    let token = request.body.token || request.query.token || request.headers["x-access-token"];
-
-    if(!token){
-        return response.status(401).json({
-            message: "Acesso Restrito"
-        });
-    }else{
-        jwt.verify(token, global.SALT_KEY, function (error, decoded) {
-            if (error) {
-                return response.status(401).json({
-                    message: "Token Inválido"
-                });
-            } else {
-                return next();
-            }
-            
-        });
+authMiddleWare.authorize = async(request, response, next) => {
+    
+    let token = request.body.token || request.query.token || request.headers['x-access-token'] || request.headers['token'];
+    let result = await jwt.authorize(token);
+    
+    if(result == true){
+        return next();
     }
+    
+    return response.status(401).json({
+        message: "no authorized"
+    });
+    
 };
 
-authMiddleWare.isAdmin = (request, response, next) => {
+authMiddleWare.isAdmin = async(request, response, next)  => {
 
-    let token = request.body.token || request.query.token || request.headers["x-access-token"];
+    let token = request.body.token || request.query.token || request.headers['x-access-token'];
+    let result = await jwt.isAdmin(token);
     
-    if(!token){
-        return response.status(401).json({
-            message: "Token Inválido"
-        });
-    }else{
-        jwt.verify(token, global.SALT_KEY, function (error, decoded) {
-            if (error) {
-                return response.status(401).json({
-                    message: "Token Inválido"
-                });
-            } else {
-                if (decoded.roles.includes("admin")) {
-                    return next();
-                } else {
-                    return response.status(403).json({
-                        message: "Está funcionalidade é restrita para administrador"
-                    });
-                }
-            }
-        });
+    if(result == true){
+        return next();
     }
+    
+    return response.status(401).json({
+        message: "no authorized"
+    });
+    
 };
 
 module.exports = authMiddleWare;
