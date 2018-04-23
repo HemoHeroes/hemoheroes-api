@@ -17,16 +17,19 @@ router.post("/", bankMiddlware.create, (request, response) => {
         let result = controller.create(request.body);
         return response.status(201).json(result);
     }catch(error){
-        return response.status(500).send("fudeeu")
+        return response.status(500).send("error internal")
     }
 });
 
 router.post("/login", (request, response) => {
     try{
-        let result = controller.login(request.body);
+        let result = controller.login(request.body.email, request.body.password);
+        if(!result) {
+            return response.status(401).json(result);
+        }
         return response.status(200).json(result);
     }catch(error){
-        return response.status(500).send("fudeeu")
+        return response.status(500).send("error internal")
     }
 });
 

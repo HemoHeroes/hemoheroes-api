@@ -24,6 +24,9 @@ router.post("/", async (request, response) => {
 router.post("/login", async(request, response) => {
     try{
         let result = await controller.login(request.body.email, request.body.password);
+        if(!result) {
+            return response.status(401).json(result);
+        }
         return response.status(200).json(result);
     }catch(error){
         console.log(error)

@@ -8,8 +8,9 @@ controller.getAll = async() => {
     return result;
 };
 
-controller.login = async() => {
-
+controller.login = async(email, password) => {
+    let result = await service.login(email, password);
+    return result;
 };
 
 controller.create = async(bank) => {
