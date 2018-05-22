@@ -17,4 +17,8 @@ controller.create = async(bank) => {
     return await service.create(bank);
 };
 
+controller.sendPush = (subscription, payload) => {
+    return service.sendPush(subscription, payload);
+}
+
 module.exports = controller;

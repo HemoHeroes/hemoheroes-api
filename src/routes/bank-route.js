@@ -33,4 +33,16 @@ router.post("/login", (request, response) => {
     }
 });
 
+router.post('/subscriber', (request, response) => {
+    
+    const subscription = request.body;
+    const payload = JSON.stringify({ title: "Push Test", body: "testando novamente" });
+
+    console.log("subscription :>> ", subscription)
+    console.log("subscription :>> ", payload)
+
+    controller.sendPush(subscription, payload);
+    response.status(201).send("foi").end();
+});
+
 module.exports = router;

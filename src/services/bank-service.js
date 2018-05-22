@@ -1,6 +1,8 @@
 "use strict";
 
 const bankRepository = require("../repositories/bank-repository");
+const webpush = require("web-push");
+const keys = require("config").notification.keys;
 
 const bankService = {};
 
@@ -17,6 +19,20 @@ bankService.login = async() => {
 bankService.create = async(bank) => {
     let result = await bankRepository.create(bank);
     return result;
+};
+
+bankService.sendPush = (subscription, payload) => {
+    
+    webpush.setVapidDetails(
+        "mailto:test@test.com",
+        keys.public,
+        keys.private
+    );
+
+    return webpush
+    .sendNotification(subscription, payload)
+    .catch(err => console.error(err));
+    
 };
 
 module.exports = bankService;
