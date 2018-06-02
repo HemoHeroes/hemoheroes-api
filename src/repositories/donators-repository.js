@@ -9,7 +9,9 @@ const schema = new mongoose.Schema(
         email : String,
         dateOfBirth: String,
         bloodType : String,
-        genre : String
+        genre : String,
+        push: Boolean,
+        notification: Object
     },
     {
         versionKey:false
