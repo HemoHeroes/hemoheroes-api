@@ -1,6 +1,7 @@
 "use strict";
 
 const bankRepository = require("../repositories/bank-repository");
+const subscriberService = require("./../services/subscriber-service");
 const webpush = require("web-push");
 const keys = require("config").notification.keys;
 
@@ -21,17 +22,26 @@ bankService.create = async(bank) => {
     return result;
 };
 
-bankService.sendPush = (subscription, payload) => {
+bankService.sendPush = async(payload) => {
+    
+    let getAll = await subscriberService.getAll();
     
     webpush.setVapidDetails(
-        "mailto:test@test.com",
+        "mailto:hemoheroes@gmail.com",
         keys.public,
         keys.private
     );
-
-    return webpush
-    .sendNotification(subscription, payload)
-    .catch(err => console.error(err));
+    
+    getAll.forEach(
+        async item => {
+            let tmp = item;
+            delete tmp['client'];
+            console.log(tmp)
+            await webpush
+            .sendNotification(tmp, payload)
+            .catch(err => console.error(err));
+        }
+    );
     
 };
 

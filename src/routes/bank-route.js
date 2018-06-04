@@ -33,15 +33,12 @@ router.post("/login", (request, response) => {
     }
 });
 
-router.post('/subscriber', (request, response) => {
+router.post('/notifications', (request, response) => {
     
     const subscription = request.body;
-    const payload = JSON.stringify({ title: "Push Test", body: "testando novamente" });
+    const payload = JSON.stringify(subscription);
 
-    console.log("subscription :>> ", subscription)
-    console.log("payload :>> ", payload)
-
-    controller.sendPush(subscription, payload);
+    controller.sendPush(payload);
 
     response.status(201).send("foi").end();
 
