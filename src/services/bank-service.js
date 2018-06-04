@@ -2,6 +2,7 @@
 
 const bankRepository = require("../repositories/bank-repository");
 const subscriberService = require("./../services/subscriber-service");
+const donatorsService = require("./../services/donators-service");
 const webpush = require("web-push");
 const keys = require("config").notification.keys;
 
@@ -22,17 +23,23 @@ bankService.create = async(bank) => {
     return result;
 };
 
-bankService.sendPush = async(payload) => {
+bankService.sendPush = async(payload, bloods) => {
+    let requestDonation = [];
     
     let getAll = await subscriberService.getAll();
-    
     webpush.setVapidDetails(
         "mailto:hemoheroes@gmail.com",
         keys.public,
         keys.private
     );
     
-    getAll.forEach(
+    if (bloods.length > 0) {
+        let users = await donatorsService.getAll();
+        requestDonation = await users.filter(item => bloods.some(i => item.bloodType == i)).map(item => item.email);
+        getAll = await getAll.filter(item => requestDonation.some(i => item.client == i));
+    }
+    
+    await getAll.forEach(
         async item => {
             let tmp = item;
             delete tmp['client'];

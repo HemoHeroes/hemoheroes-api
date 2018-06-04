@@ -36,9 +36,9 @@ router.post("/login", (request, response) => {
 router.post('/notifications', (request, response) => {
     
     const subscription = request.body;
-    const payload = JSON.stringify(subscription);
-
-    controller.sendPush(payload);
+    const payload = JSON.stringify(subscription.push);
+    console.log(" subscription =>> ", subscription.bloods)
+    controller.sendPush(payload, subscription.bloods);
 
     response.status(201).send("foi").end();
 
