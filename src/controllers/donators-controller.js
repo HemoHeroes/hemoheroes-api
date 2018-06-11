@@ -13,8 +13,12 @@ controller.login = async(email, password) => {
     return result;
 };
 
-controller.create = async(bank) => {
-    return await service.create(bank);
+controller.create = async(donator) => {
+    return await service.create(donator);
+};
+
+controller.change = async(donator) => {
+    return await service.change(donator);
 };
 
 module.exports = controller;

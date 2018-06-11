@@ -10,4 +10,11 @@ router.get("/", (req, res) => {
     });
 });
 
+router.post("/notifications", async (request, response) => {
+    let subscriber = require("./../services/subscriber-service");
+    let data = Object.assign(request.body, {client: request.headers.user})
+    let result = await subscriber.create(data);
+    response.status(201).json(data);
+});
+
 module.exports = router;

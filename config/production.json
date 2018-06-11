@@ -9,5 +9,11 @@
     },
     "mongodb": {
         "queryString": "mongodb://hemoheroes:hhtst123@ds117539.mlab.com:17539/hemoheroes"
+    },
+    "notification" : {
+        "keys": {
+            "public": "BJu_4-wfWdkSMwLrLzSbllzNHnuWFdYnGmZbNk7damnfOReovgffVPyzEk6yJBNRg6Qz2gpR5nZf-uka462Zh4M",
+            "private": "XYF0riN1iCsYoR1GO-QnfHgHJ6lo5bXwJSUzScLKESU"
+        }
     }
 }

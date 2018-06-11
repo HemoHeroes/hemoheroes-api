@@ -25,5 +25,5 @@ app.use(genericMiddlware);
 app.use("/", indexRoute);
 app.use(`/api/${version}/banks`, bankRoute);
 app.use(`/api/${version}/donators`, donatorRoute)
-
+console.log(`/api/${version}/banks`)
 module.exports = app;

@@ -14,9 +14,15 @@ donatorsService.login = async(email, password) => {
     return result;
 };
 
-donatorsService.create = async(bank) => {
-    let result = await donatorsRepository.create(bank);
+donatorsService.create = async(donator) => {
+    let result = await donatorsRepository.create(donator);
     return result;
 };
+
+donatorsService.change = async (donator) => {
+    let result = await donatorsRepository.update(donator["_id"], donator.data);
+    return result;
+};
+
 
 module.exports = donatorsService;

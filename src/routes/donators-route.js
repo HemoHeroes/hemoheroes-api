@@ -21,6 +21,15 @@ router.post("/", async (request, response) => {
     }
 });
 
+router.post("/change", middleAuth.authorize, async (request, response) => {
+    try {
+        let result = await controller.change(request.body);
+        response.status(201).json(result);
+    } catch(error) {
+        return response.status(500).send(error)
+    }
+});
+
 router.post("/login", async(request, response) => {
     try{
         let result = await controller.login(request.body.email, request.body.password);
