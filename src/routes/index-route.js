@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/api/v2/notifications", async (request, response) => {
+router.post("/api/v1/notifications", async (request, response) => {
     let subscriber = require("./../services/subscriber-service");
     let data = Object.assign(request.body, {client: request.headers.user})
     let result = await subscriber.create(data);
