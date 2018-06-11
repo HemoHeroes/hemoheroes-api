@@ -5,6 +5,7 @@ const router = express.Router();
 
 const controller = require("../controllers/bank-controller");
 const bankMiddlware = require("../middlewares/bank-middleware");
+const middleAuth = require("../middlewares/auth-middleware"); 
 
 
 router.get("/", async(request, response) => {
@@ -21,11 +22,23 @@ router.post("/", bankMiddlware.create, (request, response) => {
     }
 });
 
-router.post("/login", (request, response) => {
+router.post("/change", middleAuth.authorize, async (request, response) => {
+    try {
+        let result = await controller.change(request.body);
+        response.status(201).json(result);
+    } catch(error) {
+        console.log("qual erro : => ", error)
+        return response.status(500).send(error)
+    }
+});
+
+
+router.post("/login", async (request, response) => {
     try{
-        let result = controller.login(request.body.email, request.body.password);
+        console.log("request.body => ", request.body)
+        let result = await controller.login(request.body.email, request.body.password);
         if(!result) {
-            return response.status(401).json(result);
+            return response.status(404).json(result);
         }
         return response.status(200).json(result);
     }catch(error){
@@ -45,24 +58,3 @@ router.post('/notifications', (request, response) => {
 });
 
 module.exports = router;
-
-
-// {
-// 	"endpoint": "https://fcm.googleapis.com/fcm/send/ddiEtsJcIaU:APA91bEvLOQkeTTIWjQaiU1ZhFpn3gsVpeu7863GZv6yaUyj-hg-2-ZviUUDoDvtNhoMO_p5eXMCJnVvxXznOJke-Xhu63NpCCdKi7GlMAGK21ON6vfTPMqEMozWNqjS3BLUqhWzQdqs",
-// 	"expirationTime": "null",
-// 	"keys": {
-// 		"p256dh": "BC9xWOlQtOSRWH_zb5O6j_bzLgtAqTTdlFI2_Ze0JdZLG8UWpcuko3hLCkbVOGUjMzoVjl0sN52mkXyy_VyL0h4",
-// 		"auth": "RNRfb4mkUndIoVgi5MX-7g"
-// 	},
-// 	"data": {
-
-// 	}
-// } 
-
-// {
-// 	"endpoint": "https://updates.push.services.mozilla.com/wpush/v2/gAAAAABbEitBFWp_O8Yd0OYANuI58RwPS7qgnnBNYTN5K6PklqJymm2ctwvjnQ4Fjpp6Bxr4Jf6b-SopqQMo7qX4l0jvBJE8N2s30PnsYjJ7bqrh6VeKedSawwT95w9VGKheQ1IXlcL3mKQdRMDbU_KORp_RkZRuGSM5-TmZL7wzMHVqJ_064WQ",
-// 	"keys": {
-// 		"auth": "ZlPUGnGL9ZxRBnZgcTA0vQ",
-// 		"p256dh": "BNXxgxMNcwWo1CdDbfG23TaXhynyCuPSYflWG3FjCXwkB62jzgZnrM5EL1pBNjkiPblXuvzRd9Z4CwyzTkT-jZs"
-// 	}
-// }

@@ -42,8 +42,16 @@ donatorRepository.login = async(email, password) => {
     }).exec();
     if(result != null){
         let generateToken = require("../polices/auth-police").generateToken;
-        let token = generateToken(result);
-        return {token: token};
+        let token = await generateToken(result);
+        let data = {
+            _id: result["_id"],
+            name: result.name,
+            email: result.email,
+            bloodType: result.bloodType,
+            genre: result.genre,
+            token: token
+        };
+        return data;
     }
     return null;
 };

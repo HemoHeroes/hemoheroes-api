@@ -13,13 +13,18 @@ bankService.getAll = async() => {
     return result;
 };
 
-bankService.login = async() => {
+bankService.login = async(email, password) => {
     let result =  await bankRepository.login(email, password);
     return result;
 };
 
 bankService.create = async(bank) => {
     let result = await bankRepository.create(bank);
+    return result;
+};
+
+bankService.change = async(bank) => {
+    let result = await bankRepository.update(bank["_id"], bank.data);
     return result;
 };
 
