@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
         bloodType : String,
         genre : String,
         push: Boolean,
+        lastDonate: String,
         notification: Object
     },
     {
@@ -43,12 +44,16 @@ donatorRepository.login = async(email, password) => {
     if(result != null){
         let generateToken = require("../polices/auth-police").generateToken;
         let token = await generateToken(result);
+        console.log("result =>> ", result)
         let data = {
             _id: result["_id"],
             name: result.name,
             email: result.email,
             bloodType: result.bloodType,
-            genre: result.genre,
+            genre : result.genre,
+            dateOfBirth: result.dateOfBirth,
+            push: result.push,
+            lastDonate: result.lastDonate,
             token: token
         };
         return data;

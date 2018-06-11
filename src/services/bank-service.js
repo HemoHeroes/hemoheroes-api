@@ -40,20 +40,29 @@ bankService.sendPush = async(payload, bloods) => {
     
     if (bloods.length > 0) {
         let users = await donatorsService.getAll();
-        requestDonation = await users.filter(item => bloods.some(i => item.bloodType == i)).map(item => item.email);
+        requestDonation = await users.filter(item => bloods.some(i => item.bloodType == i)).filter(item => item.push == true).map(item => item.email);
+        console.log("requestDonation => ", requestDonation)
         getAll = await getAll.filter(item => requestDonation.some(i => item.client == i));
+        await getAll.forEach(
+            async item => {
+                let tmp = item;
+                delete tmp['client'];
+                await webpush
+                .sendNotification(tmp, payload)
+                .catch(err => console.error(err));
+            }
+        );
+    } else {
+        await getAll.forEach(
+            async item => {
+                let tmp = item;
+                delete tmp['client'];
+                await webpush
+                .sendNotification(tmp, payload)
+                .catch(err => console.error(err));
+            }
+        );
     }
-    
-    await getAll.forEach(
-        async item => {
-            let tmp = item;
-            delete tmp['client'];
-            console.log(tmp)
-            await webpush
-            .sendNotification(tmp, payload)
-            .catch(err => console.error(err));
-        }
-    );
     
 };
 
