@@ -8,7 +8,7 @@ This project is intended to help everyone. We aim to promote blood donation. We 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b9129af517d843f89293362a3fe4dafe)](https://www.codacy.com/app/renanbastos93/hemoheroes-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=HemoHeroes/hemoheroes-api&amp;utm_campaign=Badge_Grade)
 <a href="https://github.com/HemoHeroes"><img src="https://img.shields.io/npm/l/vue.svg" alt="License"></a>
 
-## How contribute
+## How to contribute
 1. Open a issue to we discussed about
 2. Make fork of project
 3. Create new Branch
