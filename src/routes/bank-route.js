@@ -13,6 +13,11 @@ router.get("/", async(request, response) => {
     return response.status(200).json(banks);
 });
 
+router.get("/:email", async(request, response) => {
+    let banks = await controller.getByEmail(request.params.email)
+    return response.status(200).json(banks);
+});
+
 router.post("/", bankMiddlware.create, (request, response) => {
     try{
         let result = controller.create(request.body);
@@ -47,11 +52,11 @@ router.post("/login", async (request, response) => {
 });
 
 router.post('/notifications', (request, response) => {
-    
+    console.log("router.post('/notifications' ==> ", request.body)
     const subscription = request.body;
     const payload = JSON.stringify(subscription.push);
     console.log(" subscription =>> ", subscription.bloods)
-    controller.sendPush(payload, subscription.bloods);
+    controller.sendPush(payload, subscription.bloods, subscription.hospital);
 
     response.status(201).send("foi").end();
 

@@ -8,6 +8,11 @@ controller.getAll = async() => {
     return result;
 };
 
+controller.getByEmail = async (email) => {
+    let result = await service.getByEmail(email);
+    return result;
+};
+
 controller.login = async(email, password) => {
     let result = await service.login(email, password);
     console.log("chegou login, ", result)
@@ -22,8 +27,8 @@ controller.change = async(bank) => {
     return await service.change(bank);
 };
 
-controller.sendPush = (payload, bloods) => {
-    return service.sendPush(payload, bloods);
+controller.sendPush = (payload, bloods, hospital) => {
+    return service.sendPush(payload, bloods, hospital);
 }
 
 module.exports = controller;

@@ -24,5 +24,10 @@ donatorsService.change = async (donator) => {
     return result;
 };
 
+donatorsService.requestOfBlood = async (id, donator) => {
+    let result = await donatorsRepository.push(id, donator);
+    return result;
+};
+
 
 module.exports = donatorsService;

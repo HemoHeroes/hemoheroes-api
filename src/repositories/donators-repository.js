@@ -12,7 +12,9 @@ const schema = new mongoose.Schema(
         genre : String,
         push: Boolean,
         lastDonate: String,
-        notification: Object
+        notification: Object,
+        requestOfBlood: []
+        
     },
     {
         versionKey:false
@@ -54,7 +56,8 @@ donatorRepository.login = async(email, password) => {
             dateOfBirth: result.dateOfBirth,
             push: result.push,
             lastDonate: result.lastDonate,
-            token: token
+            token: token,
+            requestOfBlood: result.requestOfBlood
         };
         return data;
     }
@@ -63,6 +66,12 @@ donatorRepository.login = async(email, password) => {
 
 donatorRepository.update = async(id, donator) => {
     let result = await donators.update({_id: id}, {$set: donator}).exec();
+    return result;
+};
+
+donatorRepository.push = async(id, donator) => {
+    console.log("id, donator ==>Ç ",id, donator)
+    let result = await donators.update({_id: id}, {$push: {requestOfBlood: donator}}).exec();
     return result;
 };
 
