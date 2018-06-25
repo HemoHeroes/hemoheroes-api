@@ -13,6 +13,11 @@ bankService.getAll = async() => {
     return result;
 };
 
+bankService.getByEmail = async(email) => {
+    let result =  await bankRepository.getByEmail(email);
+    return result;
+};
+
 bankService.login = async(email, password) => {
     let result =  await bankRepository.login(email, password);
     return result;
@@ -28,38 +33,58 @@ bankService.change = async(bank) => {
     return result;
 };
 
-bankService.sendPush = async(payload, bloods) => {
+bankService.sendPush = async(payload, bloods, hospital) => {
     let requestDonation = [];
     
     let getAll = await subscriberService.getAll();
+    let users = await donatorsService.getAll();
+    users = users.filter(item => item.push == true);
+
     webpush.setVapidDetails(
         "mailto:hemoheroes@gmail.com",
         keys.public,
         keys.private
     );
     
+    const myDate = () => {
+        let date = new Date();
+        return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`; 
+    };
+    
     if (bloods.length > 0) {
-        let users = await donatorsService.getAll();
-        requestDonation = await users.filter(item => bloods.some(i => item.bloodType == i)).filter(item => item.push == true).map(item => item.email);
-        console.log("requestDonation => ", requestDonation)
-        getAll = await getAll.filter(item => requestDonation.some(i => item.client == i));
+        requestDonation = await users.filter(item => bloods.some(i => item.bloodType == i));
+        getAll = await getAll.filter(item => requestDonation.some(i => item.client == i.email));
         await getAll.forEach(
             async item => {
                 let tmp = item;
+                let client = requestDonation.filter(i => i.email == tmp.client);
+                let userRequest = Object.assign(hospital, {data: myDate()});
+                donatorsService.requestOfBlood(client[0]._id, userRequest);
                 delete tmp['client'];
                 await webpush
                 .sendNotification(tmp, payload)
-                .catch(err => console.error(err));
+                .catch(error => {
+                    console.log("ocorreu algum erro ao enviar o push ...")
+                    console.log('error client ', item.client)
+                });
             }
         );
     } else {
+        requestDonation = users;
+        getAll = await getAll.filter(item => requestDonation.some(i => item.client == i.email));
         await getAll.forEach(
             async item => {
                 let tmp = item;
+                let client = requestDonation.filter(i => i.email == tmp.client);
+                let userRequest = Object.assign(hospital, {data: myDate()});
+                donatorsService.requestOfBlood(client[0]._id, userRequest);
                 delete tmp['client'];
                 await webpush
                 .sendNotification(tmp, payload)
-                .catch(err => console.error(err));
+                .catch(error => {
+                    console.log("ocorreu algum erro ao enviar o push ...")
+                    console.log('error client ', item.client)
+                });
             }
         );
     }
