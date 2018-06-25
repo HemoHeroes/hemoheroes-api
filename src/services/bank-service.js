@@ -33,7 +33,7 @@ bankService.change = async(bank) => {
     return result;
 };
 
-bankService.sendPush = async(payload, bloods, hospital) => {
+bankService.sendPush = async(payload, bloods, hospital, all) => {
     let requestDonation = [];
     
     let getAll = await subscriberService.getAll();
@@ -71,7 +71,9 @@ bankService.sendPush = async(payload, bloods, hospital) => {
         );
     } else {
         requestDonation = users;
-        getAll = await getAll.filter(item => requestDonation.some(i => item.client == i.email));
+        if (all == false) { 
+            getAll = await getAll.filter(item => requestDonation.some(i => item.client == i.email));
+        }
         await getAll.forEach(
             async item => {
                 let tmp = item;
