@@ -27,8 +27,8 @@ controller.change = async(bank) => {
     return await service.change(bank);
 };
 
-controller.sendPush = (payload, bloods, hospital) => {
-    return service.sendPush(payload, bloods, hospital);
+controller.sendPush = (payload, bloods, hospital, all) => {
+    return service.sendPush(payload, bloods, hospital, all);
 }
 
 module.exports = controller;
