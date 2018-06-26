@@ -79,8 +79,10 @@ bankService.sendPush = async(payload, bloods, hospital, all) => {
                 let tmp = item;
                 let client = requestDonation.filter(i => i.email == tmp.client);
                 let userRequest = Object.assign(hospital, {data: myDate()});
-                donatorsService.requestOfBlood(client[0]._id, userRequest);
-                delete tmp['client'];
+                if (client[0]._id) {
+			donatorsService.requestOfBlood(client[0]._id, userRequest);
+        	}
+	        delete tmp['client'];
                 await webpush
                 .sendNotification(tmp, payload)
                 .catch(error => {
