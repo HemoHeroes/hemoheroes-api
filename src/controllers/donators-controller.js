@@ -8,6 +8,12 @@ controller.getAll = async() => {
     return result;
 };
 
+controller.getRequestBlood = async(email) => {
+    let result =  await service.getRequestBlood(email);
+    return result;
+};
+
+
 controller.login = async(email, password) => {
     let result = await service.login(email, password);
     return result;

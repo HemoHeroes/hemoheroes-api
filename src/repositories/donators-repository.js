@@ -31,12 +31,17 @@ donatorRepository.getAll = async() => {
     return result;
 };
 
+donatorRepository.getRequestBlood = async(email) => {
+    let result = await donators.find({email: email})
+    .exec();
+    return result;
+};
+
 donatorRepository.getByBlood = async(blood) => {
     let result = await donators.find({bloodType: blood})
     .exec();
     return result;
 };
-
 
 donatorRepository.login = async(email, password) => {
     let result = await donators.findOne({

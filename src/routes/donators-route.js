@@ -8,7 +8,13 @@ const middleAuth = require("../middlewares/auth-middleware"); //authorize , isAd
 
 
 router.get("/", middleAuth.authorize, async(request, response) => {
-    let donators =  await controller.getAll()
+    let donators = await controller.getAll()
+    return response.status(200).json(donators);
+});
+
+router.get("/requestBlood/:email", async(request, response) => {
+    console.log("chegou aquii ", request.params)
+    let donators = await controller.getRequestBlood(request.params.email);
     return response.status(200).json(donators);
 });
 

@@ -9,6 +9,11 @@ donatorsService.getAll = async() => {
     return result;
 };
 
+donatorsService.getRequestBlood = async(email) => {
+    let result =  await donatorsRepository.getRequestBlood(email);
+    return result;
+};
+
 donatorsService.login = async(email, password) => {
     let result =  await donatorsRepository.login(email, password);
     return result;
